@@ -11,16 +11,10 @@ const Favorites = () => {
     setFavorites(favorites);
   }, []);
 
-  const removeFromFavorites = (id: number) => {
-    const updatedFavorites = favorites.filter((movie) => movie.id !== id);
-    setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  };
-
   return (
-    <div>
-      <h1>Your Favorites</h1>
-      <div className="movie-grid">
+    <div className="py-4 px-8">
+      <h1 className="mb-2 font-semibold text-lg">Your Favorites</h1>
+      <div className="grid grid-cols-4 gap-4">
         {favorites.map(({ id, poster_path, title, vote_average }, index) => (
           <div key={index}>
             <MovieCard
@@ -29,9 +23,6 @@ const Favorites = () => {
               title={title}
               vote_average={vote_average}
             />
-            <button onClick={() => removeFromFavorites(id)}>
-              Remove from Favorites
-            </button>
           </div>
         ))}
       </div>
